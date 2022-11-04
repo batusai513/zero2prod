@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgis/postgis:12-3.1-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: newsletter
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql
+
+  postgres_waiter:
+    image: "waisbrot/wait"
+    environment:
+      TARGETS: "db:5432"
+    links:
+      - db
+
+volumes:
+  db:
