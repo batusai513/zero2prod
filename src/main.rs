@@ -4,5 +4,5 @@ use std::net::TcpListener;
 async fn main() -> std::io::Result<()> {
     let listener = TcpListener::bind("127.0.0.1:8000").expect("Failed to bind random port");
 
-    zero2prod::run(listener)?.await
+    zero2prod::startup::run(listener)?.await
 }
