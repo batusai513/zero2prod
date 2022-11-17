@@ -8,7 +8,11 @@ use zero2prod::{
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
-    init_tracing_subscriber(get_tracing_subscriber("zero2prod".into(), "info".into()));
+    init_tracing_subscriber(get_tracing_subscriber(
+        "zero2prod".into(),
+        "info".into(),
+        std::io::stdout,
+    ));
 
     let configuration = get_configuration().expect("Failed to read configuration");
 
